@@ -26,10 +26,4 @@ public class ShiftAnd {
         }
         return false;
     }
-
-    public static void main(String[] args) {
-        String pattern = "al_a";
-        String content = "annural_announcle";
-        System.out.println(new ShiftAnd().hasPattern(content, pattern));
-    }
 }

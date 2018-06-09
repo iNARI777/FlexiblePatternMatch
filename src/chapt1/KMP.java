@@ -22,7 +22,7 @@ public class KMP {
         return next;
     }
 
-    public boolean match(String content, String pattern) {
+    public boolean hasPattern(String content, String pattern) {
         int[] next = setNext(pattern);
         int indexNext = 0;
         for(int i = 0; i < content.length() - pattern.length(); i++) {
@@ -36,10 +36,5 @@ public class KMP {
         }
 
         return false;
-    }
-
-    public static void main(String[] args) {
-        boolean b = new KMP().match("a string abc in content abcabcabda", "abc");
-        System.out.println(b);
     }
 }
