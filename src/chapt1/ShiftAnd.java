@@ -21,8 +21,8 @@ public class ShiftAnd {
         long target = 1 << (pattern.length() - 1);
         long mask = 0;
         for(int i = 0; i < content.length(); i++) {
-            mask = ((mask << 1) | 1 ) & bitmaps[content.charAt(i)];     //Core process
-            if((mask | target) == target) return true;      // Don't use "mask == target"!
+            mask = ((mask << 1) | 1 ) & bitmaps[content.charAt(i)];     // 核心处理步骤
+            if((mask | target) == target) return true;                  // 别用"mask == target"!
         }
         return false;
     }
