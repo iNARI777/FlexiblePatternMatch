@@ -27,9 +27,7 @@ public class BOM {
 
     /*
     * createAutomata的功能函数，用来向自动机(Factor Oracle)中添加一个新状态。
-    *
-    * current的前置状态由current之前的一个状态previous求得，分为三种情况：
-    * 情况1：previous的provider是空，说明
+    * current的前置状态由current之前的一个状态previous求得，分为三种情况。
     */
     private Automata addStatus(Automata automata, Character c) {
         Status current = new Status();
@@ -41,15 +39,15 @@ public class BOM {
         // 设置current的provider
         Status preProvider = previous.provider;
 
-        // 前一个状态的provider不为空，且这个provider没有到当前状态的转移的时候
+        // 1. 前一个状态的provider不为空，且这个provider没有到当前状态的转移的时候
         while(preProvider != null && !preProvider.trans.containsKey(c)) {
             preProvider.trans.put(c, current);
             preProvider = preProvider.provider;
         }
-        if(preProvider == null) {                   // 证明前一个节点是0号状态，把其provider设为0号状态
+        if(preProvider == null) {                   // 2. 证明前一个节点是0号状态，把其provider设为0号状态
             current.provider = automata.head;
         } else {
-            current.provider = preProvider.trans.get(c);    // 前一个状态的provider不为空，且这个provider有到当前状态的转移的时候
+            current.provider = preProvider.trans.get(c);    // 3. 前一个状态的provider不为空，且这个provider有到当前状态的转移的时候
         }
 
         automata.tail = current;        // 记得把当前状态添加到状态机末尾
